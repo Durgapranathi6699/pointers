@@ -1,0 +1,32 @@
+class Solution {
+    public int minCost(String colors, int[] neededTime) {
+           int totalsum=0;
+            int start=0;
+             int end=0;
+        for(int i=0;i<colors.length();i++){
+              int sum=0;
+              int max=0;
+            while(end<colors.length() && colors.charAt(start)==colors.charAt(end)){
+                sum=sum+neededTime[end]; 
+                 max=Math.max(max,neededTime[end]);
+                   end++;
+            }
+            start=end;
+           totalsum+=sum-max;
+        }
+        return totalsum;
+    }
+}
+//u have to remove ballon with same color which are consecutie such that u remove the ballons that takes min neededtime
+//aaabbaccc
+//123345353
+//remove a(which has 1,2) b(3) c(3,3)
+//this can be done indirectly as sum-(a(3) b(4)c(5))
+//start,end pointer  at  index 0(at a)
+//end moves till last occuence of a
+//in sum add all values(from start to end for a occurences)
+//max stores max value
+//in totalsum add sum-max(gives value of removed ballons)
+//set start=end for next set of characters
+//repeat for every set of characters (bb)  (ccc)
+
